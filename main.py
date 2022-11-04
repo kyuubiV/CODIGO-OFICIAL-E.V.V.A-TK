@@ -1,13 +1,14 @@
-from pessoa_user import *
+from  User import *
 from fun_auxi import *
 from Calendario import *
+from Pessoa import *
 
 count=0
 inic = input("Vamos inciar?(s/n) ")
 load()
 txt("CADASTRO", 1)
 if inic == 's':
-    user=Pessoa_User()
+    user = User()
 # instanciando o usuario
     load()
     txt("CONFIRME O CADASTRO", 4)
