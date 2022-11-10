@@ -1,4 +1,4 @@
-from ConexaoBanco import *
+from ConexaoBD import *
 
 tabelaUsuario = """CREATE TABLE IF NOT EXISTS usuario(
 id_user integer not null primary key autoincrement,
@@ -11,16 +11,17 @@ data_aniver date
 );"""
 
 tabelaCalendario = """CREATE TABLE IF NOT EXISTS calendario(
-id_calen integer not null primary key auto_increment,
+id_calen integer not null primary key autoincrement,
+id_user integer,
 dia integer(2) not null,
 mes integer(2) not null,
 ano integer(4) not null,
-horario time,
+horario time
 );
 """
 
 tabelaAtividade = """create table if not exists atividade(
-id_ativ integer not null auto_increment,
+id_ativ integer not null autoincrement,
 id_calen integer,
 nome_atividade varchar(30) not null,
 tipo_atividade varchar(20) not null,

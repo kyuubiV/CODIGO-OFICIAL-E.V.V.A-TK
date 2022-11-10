@@ -5,7 +5,8 @@ bancodados = "bando.bd"
 def iniciar_conexao():
   conexao = None
   try:
-    conexao = sqlite3.connect(bancodados)    
+    conexao = sqlite3.connect(bancodados) 
+    print("Conexão concluída.")
   except sqlite3.Error as e:
     print("Erro de conexão.",e)
   return conexao
