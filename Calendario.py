@@ -20,7 +20,9 @@ class Calendario:
       self.atividade = Atividades()
       
       data = "INSERT INTO calendario (dia,mes,ano,horario) VALUES ('"+self.dia+"','"+self.mes+"','"+self.ano+"','"+self.hora+"'); "
-      
       insert(variconexao,data)
+      res = select(variconexao,data)
+      print(res)
+      
     except sqlite3.Error as e:
      print(e)
