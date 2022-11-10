@@ -1,6 +1,7 @@
+from ConexaoBD import *
+from Calendario import *
 from  User import *
 from fun_auxi import *
-from Calendario import *
 from Pessoa import *
 
 count=0
