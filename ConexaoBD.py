@@ -38,6 +38,20 @@ def select(conexao,sql):
   except sqlite3.Error as e:
     print("Erro ao selecionar dados.",e)
 
-
-
-  
+def update(conexao,sql):
+  try:
+    cursor = conexao.cursor()
+    cursor.execute(sql)
+    cursor.commit()
+    print("Dados Atualizados com sucesso")
+  except sqlite3.Error as e:
+    print("Erro em atualizar dados.",e)
+    
+def delete(conexao,sql):
+  try:
+    cursor = conexao.cursor()
+    cursor.execute(sql)
+    cursor.commit()
+    print("Dados deletados.")
+  except sqlite3.Error as e:
+    print("Erro ao deletar Dados.",e)

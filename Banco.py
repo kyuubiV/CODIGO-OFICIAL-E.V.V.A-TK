@@ -20,26 +20,16 @@ horario time
 );
 """
 
-tabelaAtividade = """create table if not exists atividade(
-id_ativ integer not null autoincrement,
+tabelaAtividade = """create table if not exists atividade
+(id_ativ integer not null primary key autoincrement,
 id_calen integer,
 nome_atividade varchar(30) not null,
 tipo_atividade varchar(20) not null,
 local_atividade varchar(30),
 comentario text,
 foreign key(id_calen)
-references calendario(id_calen);
-primary key(id_ativ)
+references calendario(id_calen)
 );
-"""
-
-tabelaTem = """create table if not exists tem(
-id_user integer,
-id_cale integer,
-foreign key(id_user)
-references usuario(id_user),
-foreign key(id_calen)
-references calendario(id_calen));
 """
 
 # Teste do Banco
