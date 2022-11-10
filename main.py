@@ -1,4 +1,5 @@
-from interface import *
+#from interface import *
+from Menu_principal import *
 """from ConexaoBD import *
 from Calendario import *
 from  User import *
