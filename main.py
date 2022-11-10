@@ -1,4 +1,5 @@
-from ConexaoBD import *
+from interface import *
+"""from ConexaoBD import *
 from Calendario import *
 from  User import *
 from fun_auxi import *
@@ -81,4 +82,4 @@ if inic == 's':
         num = int(input("\033[1;34mO que deseja fazer hoje? \n1.Agendar Atividade\n2.Buscar Atividades\n3.visualizar calendario\n4.Editar Dados\n5.Exibir dados\n6.Sair\nDigite o numero desejado: "))
 
 else:
-  print("ok:(")
+  print("ok:(")"""
