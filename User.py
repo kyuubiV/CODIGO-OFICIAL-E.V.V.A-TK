@@ -5,6 +5,7 @@ class User(Pessoa):
     def __init__(self):
         super().__init__()
 # metodo para adicionar dados ao dicionario
+      
     def Login(self):
         a = input('Digite seu CPF: ')
         b = input("Digite sua senha: ")
@@ -20,6 +21,7 @@ class User(Pessoa):
             print('\033[1;33m')
             return 'n'
 # metodo que autoriza o usuario a entrar no planner
+          
     def AlterarSenha(self,newsenha):
         self._nm_user = newsenha
         val = input("Digite seu usuario: ")
@@ -32,6 +34,7 @@ class User(Pessoa):
          y[1] = self._nm_user
          print("\033[0;49;32mtudo certo")
          print('\033[1;33m')
+          
 # metodo para alterar a senha
     def ExibirDados(self, val):
         y=self._dict[val]

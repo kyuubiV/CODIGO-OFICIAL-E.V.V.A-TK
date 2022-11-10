@@ -42,7 +42,7 @@ def update(conexao,sql):
   try:
     cursor = conexao.cursor()
     cursor.execute(sql)
-    cursor.commit()
+    conexao.commit()
     print("Dados Atualizados com sucesso")
   except sqlite3.Error as e:
     print("Erro em atualizar dados.",e)
@@ -51,7 +51,7 @@ def delete(conexao,sql):
   try:
     cursor = conexao.cursor()
     cursor.execute(sql)
-    cursor.commit()
+    conexao.commit()
     print("Dados deletados.")
   except sqlite3.Error as e:
     print("Erro ao deletar Dados.",e)
