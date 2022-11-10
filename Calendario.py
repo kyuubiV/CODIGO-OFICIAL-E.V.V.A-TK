@@ -2,7 +2,6 @@ from Atividade import *
 from ConexaoBD import *
 from Banco import *
 
-newTable(variconexao,tabelaCalendario)
 
 
 class Calendario:
@@ -10,13 +9,18 @@ class Calendario:
     self.dia = None
     self.mes = None
     self.ano = None
-    self.tempo = None
+    self.hora = None
     self.atividade = None
   def AgendarAtividade(self):
     try:
-      self.dia = int(input("Insira o dia: "))
-      self.mes = int(input("Insira o mês: "))
-      self.ano = int(input("Insira o ano: "))
+      self.dia = input("Insira o dia: ")
+      self.mes = input("Insira o mês: ")
+      self.ano = input("Insira o ano: ")
       self.hora = input("Insira o horário(00:00): ")
       self.atividade = Atividades()
-      insert(variconexao,("INSERT INTO calendario(dia,mes,ano,horario) VALUES ('"+self.dia+"','"+self.mes+"','"+self.ano+"','"+sel.hora+"')); "))
+      
+      data = "INSERT INTO calendario (dia,mes,ano,horario) VALUES ('"+self.dia+"','"+self.mes+"','"+self.ano+"','"+self.hora+"'); "
+      
+      insert(variconexao,data)
+    except sqlite3.Error as e:
+     print(e)

@@ -4,6 +4,7 @@ from  User import *
 from fun_auxi import *
 from Pessoa import *
 
+
 count=0
 inic = input("Vamos inciar?(s/n) ")
 load()
