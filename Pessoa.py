@@ -12,7 +12,7 @@ class Pessoa:
         x= input("Confirme o seu CPF: ")
         y= input("Confirme a sua senha: ")
         if self.CPF == x and self._senha == y:
-            print("\033[0;49;32mTudo certo!")
+            print("\033[0;49;32mtudo certo")
             return 's'
         else:
             print("\033[0;49;31merro os dados digitados não coincidem")
