@@ -7,7 +7,7 @@ class User(Pessoa):
 # metodo para adicionar dados ao dicionario
       
     def Login(self):
-        a = input('Digite seu CPF: ')
+        a = input('Digite seu email: ')
         b = input("Digite sua senha: ")
         try:
          y = self._dict[a]

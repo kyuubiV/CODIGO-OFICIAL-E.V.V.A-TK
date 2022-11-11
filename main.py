@@ -1,4 +1,4 @@
-from Mainteste import *
+
 from ConexaoBD import *
 from Calendario import *
 from  User import *
@@ -12,6 +12,7 @@ load()
 txt("CADASTRO", 1)
 if inic == 's':
     user = User()
+    user.AddUsuario()
 # instanciando o usuario
     load()
     txt("CONFIRME O CADASTRO", 4)
