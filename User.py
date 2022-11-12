@@ -4,22 +4,7 @@ class User(Pessoa):
   
     def __init__(self):
         super().__init__()
-# metodo para adicionar dados ao dicionario
-      
-    def Login(self):
-        a = input('Digite seu email: ')
-        b = input("Digite sua senha: ")
-        try:
-         y = self._dict[a]
-        except:
-         print('\033[0;49;31mnão existe usuario ',a)
-        if a in self._dict.keys() and y[1] == b:
-            print('\033[0;49;32mtudo certo')
-            return a
-        else:
-            print("\033[0;49;31merro senha incorreta")
-            print('\033[1;33m')
-            return 'n'
+
 # metodo que autoriza o usuario a entrar no planner
           
     def AlterarSenha(self,newsenha):
