@@ -10,7 +10,7 @@ def vcalendario():
   print(calendar.month(y, m))
 windowsmp = Tk()
 windowsmp.geometry("500x250")
-#amarelo, vermelho e azul
+#amarelo, vermelho e azul, roxo e vermelho k
 corum = "#FFFF00"
 corois = "#FF0000"
 cores = "#00BFFF"
@@ -22,30 +22,44 @@ windowsmp.config(background = cores)
 #testando o frame 
 topo = Frame(windowsmp, width=600, height=50, bd=1, relief="raise")
 topo.pack(side=TOP)
-esquerda = Frame(windowsmp, width=300, height=300, bd=1, relief="raise", background=corum)
+esquerda = Frame(windowsmp, width=300, height=500, bd=1, relief="raise", background=cores)
 esquerda.pack(side=LEFT)
-direita = Frame(windowsmp, width=300, height=300, bd=1, relief="raise")
+direita = Frame(windowsmp, width=300, height=500, bd=1, relief="raise", background = corr)
 direita.pack(side=RIGHT)
+
 # labels
 txt_om = Label(topo, width=600, font=('arial', 17), text = "Seja Bem Vindo ao Little Calendar", background=corois)
 txt_om.pack()
-Forms = Frame(esquerda, width=200, height=200, background=cores)
-Forms.pack(side=TOP)
-Buttons = Frame(esquerda, width=50, height=50, background=corum, relief="raise")
-Buttons.pack(side=BOTTOM)
+Forms = Frame(esquerda, width=600, height=400, background=cores)
+Forms.pack(side=TOP) 
+Formsoutrolado = Frame(direita, width= 600, height=400,  background=corr)
+Formsoutrolado.pack(side=RIGHT)
+txtus= Label(Formsoutrolado,width=16, font=('arial', 10), text = 'Usuário', bd=10,background = corr)
+txtus.grid(row=0, column=1)
+
+#atv = Label(Forms, text="A\nT\nI\nV\nI\nD\nA\nD\nE\n ", font=#('arial', 6), bd=10, background=corum )
+
+#atv.grid(row= 0, column=4 )
+
+# Buttons = Frame(esquerda, width=20, height=20, background= cores, relief="raise")
+# Buttons.pack(side=TOP)
 #bottons
-buttons_aa = Button(Forms,width = 12, text="Agendar Atividade", font=('arial', 10), bd=15, background=corb, command = Calendario)
-buttons_aa.grid(row=0)
+buttonED = Button(Formsoutrolado,width=15, text = "Visualizar Dados", font=('arial',10), bd=8,background= cores)
+buttonED.grid(row=2, column=1)
+buttons_aa = Button(Forms,width = 11, text="Agendar Atividade", font=('arial', 6), bd=10, background=corb, command = Calendario)
+buttons_aa.grid(column=2,row=0)
 
-button_ba =Button(Forms, width=12, text="Buscar atividade", font=('arial', 10), bd=15, background=corb)
-button_ba.grid(row=1)
+button_ba =Button(Forms, width=11, text="Buscar atividade", font=('arial', 6), bd=10, background=corb)
+button_ba.grid(column=2,row=1)
 
-button_va = Button(Forms,width=12,text="Visualizar Atividade", font=('arial', 10), bd=15, background=corb, command = vcalendario)
+button_va = Button(Forms,width=11,text="Visualizar Atividade", font=('arial', 6), bd=10, background=corb)
 
-button_va.grid(row=2)
-
-txt_result = Label(Buttons, background=corum)
-txt_result.pack(side=TOP)
+button_va.grid(column=2,row=2)
+buttons = Button(Forms, width=11, text= 'SAIR', font= ('arial', 6),bd=10, background= corb)
+buttons.grid(column=2,row=3)
+# txt_result = Label(Buttons, background=corum)
+# txt_result.pack(side=TOP)
+#bt editar dados do usuario, sair, 
 """
 #texto dentro da jan
 txt_om = Label(windowsmp, text="Seja Bem Vindo ao Little Calendar", background = cores)
