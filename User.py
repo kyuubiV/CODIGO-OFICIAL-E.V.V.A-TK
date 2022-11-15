@@ -3,12 +3,12 @@ from ConexaoBD import *
 from Banco import *
 class User(Pessoa):
   
-    def __init__(self):
-        super().__init__()
+    def __init__(self,email,senha,telefone):
+        super().__init__(email,senha,telefone)
 
 # metodo que autoriza o usuario a entrar no planner
           
-    def AlterarSenha(self,newsenha,user,telefone):
+    def AlterarSenha(self,valor,telefone):
       banco=select(variconexao,"SELECT * FROM usuario WHERE id_user ='"+self._return+"';")
       for Dados in banco:
        if telefone == Dados[3]:
@@ -20,7 +20,7 @@ class User(Pessoa):
        else:
          return False
 # metodo para alterar a senha
-    def ExibirDados(self, val):
+    def ExibirDados(self):
         banco=select(variconexao,"SELECT * FROM usuario WHERE id_user ='"+self._return+"';")
         return banco
 # metodo para exibir os dados      

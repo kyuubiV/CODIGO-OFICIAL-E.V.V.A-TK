@@ -5,7 +5,7 @@ class Pessoa:
     def __init__(self,email,senha,telefone):
         self._email = email
         self._senha = senha
-        self._telefone = telefone
+        self._telefone =telefone
         self._dict = {}
         self._return = None
         self._nm_user = user

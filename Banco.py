@@ -8,7 +8,7 @@ nome_user varchar(30),
 telefone varchar(12),
 data_aniver date
 );"""
-delete(variconexao,"DELETE FROM usuario WHERE id_user>1")
+#delete(variconexao,"DELETE FROM usuario WHERE id_user>1")
 
   
 tabelaCalendario = """CREATE TABLE IF NOT EXISTS calendario
