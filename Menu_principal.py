@@ -48,7 +48,7 @@ Formsoutrolado.pack(side=RIGHT)
 img = PhotoImage(file="evvaslog.png")
 #figura1 = Label(Forms,image=img)
 figura1 = Label(Forms, image=img,width=100,bd=20,background=coroxo)
-figura1.grid(row=2,column=7)
+figura1.grid(row=2,column=8)
 
 txtus= Label(Formsoutrolado,width=16, font=('arial', 10), text = 'Usuário', bd=10,background = corr)
 txtus.grid(row=1, column=1)
@@ -71,16 +71,13 @@ buttonVD.grid(row=2, column=1)
 buttonED = Button(Formsoutrolado,width=15, text = "Editar Dados", font=('arial',10), bd=8,background= cores)
 buttonED.grid(row=3, column=1)
 
-atv= Label(Forms,width=15, font=('arial', 15), text = 'ATIVIDADES:', bd=10,background = coroxo)
+atv= Label(Forms,width=15, font=('arial', 12), text = 'ATIVIDADES:', bd=10,background = coroxo)
 atv.grid(row=0, column=1)
 buttons_aa = Button(Forms,width = 12, text="Agendar Atividade", font=('arial', 8), bd=10, background=corb, command = Calendario)
 buttons_aa.grid(column=1,row=1)
-
 button_ba =Button(Forms, width=12, text="Buscar atividade", font=('arial', 8), bd=10, background=corb)
 button_ba.grid(column=1,row=2)
-
 button_va = Button(Forms,width=12,text="Visualizar Atividade", font=('arial', 8), bd=10, background=corb)
-
 button_va.grid(column=1,row=3)
 buttons = Button(Forms, width=12, text= 'SAIR', font= ('arial', 8),bd=10, background= corb)
 buttons.grid(column=1,row=4)
