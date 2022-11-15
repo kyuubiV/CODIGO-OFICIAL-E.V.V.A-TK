@@ -6,6 +6,7 @@ import tkinter.messagebox as tkMessageBox
 from tkinter.simpledialog import askstring
 from tkinter.messagebox import showinfo
 from Pessoa import*
+from Erro import *
 cor1 = "#B0C4DE"
 cor2 = "#6959CD"
 principal = Tk()
@@ -27,17 +28,56 @@ def Pronto():
   if  email.get() == "" or senha.get() == ""  or telefone.get() == "":
     tkinter.messagebox.showinfo(title="Erro",message="Preencha todos os campos!",icon ="warning")
   else:
-    email1 = askstring('Email', "confirme seu email!")
-    senha1 = askstring('Senha', 'Confirme sua senha!',show="*")
-    if email.get() != email1 or senha.get() != senha1:
-     showinfo('ERRO', 'Erro dados não coincidem',icon ="warning")
-    else:
-     showinfo('AVISO', 'tudo certo')
-     usuario = Pessoa(email,senha, telefone)
-     usuario.AddDados()
-     email.delete(0,"end") 
-     senha.delete(0,"end")
-     telefone.delete(0,"end")
+     try:
+       if not '@' in email.get():
+        raise ERROEMAIL(email.get())
+       if not '.' in email.get() :
+        raise ERROEMAIL(email.get())
+     except ERROEMAIL as a:
+       tkinter.messagebox.showinfo(title="Erro",message='email {} invalido'.format(a),icon ="warning")
+       email.delete(0,"end") 
+       senha.delete(0,"end")
+       telefone.delete(0,"end")
+     try:
+       if len(senha.get()) < 8:
+         raise ERROSENHA(senha.get())
+     except ERROSENHA:
+       tkinter.messagebox.showinfo(title="Erro",message='a senha tem que no minimo ter 8 caracteres',icon ="warning")
+       email.delete(0,"end") 
+       senha.delete(0,"end")
+       telefone.delete(0,"end")    
+     try:
+       if len(telefone.get()) < 9:
+         raise ERROTELEFONE(telefone.get())
+     except ERROTELEFONE as c:        
+       tkinter.messagebox.showinfo(title="Erro",message='telefone {} invalido'.format(c),icon ="warning")
+       email.delete(0,"end") 
+       senha.delete(0,"end")
+       telefone.delete(0,"end")   
+     else:
+      email1 = askstring('CONFIRMAR EMAIL', "confirme seu email!")
+      senha1 = askstring('CONFIRMAR SENHA', 'Confirme sua senha!',show="*")
+      if email.get() != email1 or senha.get() != senha1:
+       showinfo('ERRO', 'Erro dados não coincidem',icon ="warning")
+      else:
+       try:
+        banco=select(variconexao,"SELECT * FROM usuario ORDER BY email ASC ")
+        for Dados in banco:
+          if email.get() == Dados[1]:
+            raise ERROEMAIL(email.get())
+       except ERROEMAIL as e:
+        tkinter.messagebox.showinfo(title="Erro",message='email {} ja esta cadastrado em outra conta'.format(e),icon ="warning")
+        email.delete(0,"end") 
+        senha.delete(0,"end")
+        telefone.delete(0,"end")
+     
+       else:
+        showinfo('AVISO', 'tudo certo')
+        usuario = Pessoa(email.get(),senha.get(), telefone.get())
+        usuario.AddDados()
+        email.delete(0,"end") 
+        senha.delete(0,"end")
+        telefone.delete(0,"end")
       
 #windows
 topo = Frame(principal, width=300, height=50, bd=1, relief="raise")
@@ -75,3 +115,4 @@ btn_jtncad.pack(side=LEFT)
 btn_sair = Button(Buttons, width=12, text="Sair", command=sair)
 btn_sair.pack(side=LEFT)
 
+principal.mainloop()

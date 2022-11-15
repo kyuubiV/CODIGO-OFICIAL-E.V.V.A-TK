@@ -1,5 +1,6 @@
 from Pessoa import *
-
+from ConexaoBD import *
+from Banco import *
 class User(Pessoa):
   
     def __init__(self):
@@ -7,49 +8,47 @@ class User(Pessoa):
 
 # metodo que autoriza o usuario a entrar no planner
           
-    def AlterarSenha(self,newsenha):
-        self._nm_user = newsenha
-        val = input("Digite seu usuario: ")
+    def AlterarSenha(self,newsenha,user,telefone):
+      banco=select(variconexao,"SELECT * FROM usuario WHERE id_user ='"+self._return+"';")
+      for Dados in banco:
+       if telefone == Dados[3]:
         try:
-         y = self._dict[val]
-        except:
-         print('\033[0;49;31mnão existe usuario ',val)
-         print('\033[1;33m')
-        else:
-         y[1] = self._nm_user
-         print("\033[0;49;32mtudo certo")
-         print('\033[1;33m')
-          
+          update(variconexao,"UPDATE usuario SET email ='"+valor+"' WHERE id_user ='"+self._return+"';")
+          return True
+        except sqlite3.Error as e:
+          print(e)
+       else:
+         return False
 # metodo para alterar a senha
     def ExibirDados(self, val):
-        y=self._dict[val]
-        print("Usuario numero: {}\nNome: {}\nSenha: {}\nEmail: {}\nTelefone: {}\nDataAniversario: {}\nse algum dado estiver none é porque ele ainda não foi definida".format(val,y[3],y[1],y[0],y[2],y[4]))
+        banco=select(variconexao,"SELECT * FROM usuario WHERE id_user ='"+self._return+"';")
+        return banco
 # metodo para exibir os dados      
-    def EditarDados(self, x, val, val2):
+    def EditarDados(self, valor):
         if x == 1:
-            self._nm_user = val
-            y = self._dict[val2]
-            y[3] = self._nm_user
-            print("\033[0;49;32mtudo certo")
-            return self._dict
+         try:
+          update(variconexao,"UPDATE usuario SET email ='"+valor+"' WHERE id_user ='"+self._return+"';")
+          return True
+         except sqlite3.Error as e:
+          print(e)
         elif x == 2:
-            self._email = val
-            y = self._dict[val2]
-            y[0] = self._email
-            print("\033[0;49;32mtudo certo")
-            return self._dict
+         try:
+          update(variconexao,"UPDATE usuario SET nome_user ='"+valor+"' WHERE id_user ='"+self._return+"';")
+          return True
+         except sqlite3.Error as e:
+          print(e)
         elif x == 3:
-            self._telefone = val
-            y = self._dict[val2]
-            y[2] = self._telefone
-            print("\033[0;49;32mtudo certo")
-            return self._dict
+         try:
+          update(variconexao,"UPDATE usuario SET telefone ='"+valor+"' WHERE id_user ='"+self._return+"';")
+          return True
+         except sqlite3.Error as e:
+          print(e)
         elif x == 4:
-            self._dataniver = val
-            y = self._dict[val2]
-            y[4] = self._dataniver
-            print("\033[0;49;32mtudo certo")
-            return self._dict
+         try:
+          update(variconexao,"UPDATE usuario SET data_aniver ='"+valor+"' WHERE id_user ='"+self._return+"';")
+          return True
+         except sqlite3.Error as e:
+          print(e)
         else:
             print("ok")
 # metodo para editar os dados do usuario
