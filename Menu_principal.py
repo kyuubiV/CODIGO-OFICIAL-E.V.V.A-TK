@@ -59,6 +59,17 @@ txtus.grid(row=1, column=1)
 
 # Buttons = Frame(esquerda, width=20, height=20, background= cores, relief="raise")
 # Buttons.pack(side=TOP)
+#commands
+def visu_dads():
+  user= User(None,None,None)
+  res = user.ExibirDados()
+  for dados in res:
+   tkinter.messagebox.showinfo(title ='Dados',message = f'email: {dados[1]} \nSenha: {dados[2]} \nNome de usuario: {dados[3]}\nTelefone:  {dados[4]}\nData de aniversario: {dados[5]}') 
+def sair():
+    resultado = tkMessageBox.askquestion('Cadastro Usuários', 'Tem certeza que deseja sair?', icon="warning") 
+    if resultado == 'yes':
+        windowsmp.destroy() 
+        exit()
 #bottons
 def Profile():
   tkinter.messagebox.showinfo(title="Your Profile",message="USUARIO VAI ETSAR AQUI OH")
@@ -79,7 +90,7 @@ button_ba =Button(Forms, width=12, text="Buscar atividade", font=('arial', 8), b
 button_ba.grid(column=1,row=2)
 button_va = Button(Forms,width=12,text="Visualizar Atividade", font=('arial', 8), bd=10, background=corb)
 button_va.grid(column=1,row=3)
-buttons = Button(Forms, width=12, text= 'SAIR', font= ('arial', 8),bd=10, background= corb)
+buttons = Button(Forms, width=12, text= 'SAIR', font= ('arial', 8),bd=10, background= corb,command= sair)
 buttons.grid(column=1,row=4)
 #imagem
 
