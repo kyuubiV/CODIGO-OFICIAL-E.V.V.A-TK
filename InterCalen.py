@@ -57,14 +57,13 @@ def calen():
   arvore.pack(side=TOP)
   # # arvore.delete(*arvore.get_children()) #limpar tree view
   data = select(variconexao,"SELECT * FROM `calendario` WHERE `mes` = '"+sele.get()+"'ORDER BY `dia` ASC")
-  
+  id = str(select(variconexao,"SELECT id_calen FROM `calendario` WHERE `mes` = '"+sele.get()+"'"))
+  atividade = select(variconexao,"SELECT * FROM `atividade` WHERE `id_calen` = '"+id+"'")
+  print(atividade)
   for dados in data: # insere tuplas do fetch na árvore
-    id = str(dados[1])
-    atividade = select(variconexao,"SELECT * FROM `atividade` WHERE `id_calen` = '"+id+"'")
-    print(atividade)
-    arvore.insert('', 'end', values=(dados[2],dados[3], dados[4], dados[5],atividade[2],atividade[3],atividade[4],atividade[5]))
-  
-  arvore.pack() 
+    for x in atividade:
+     arvore.insert('', 'end', values=(dados[2],dados[3], dados[4], dados[5],x[2],x[3],x[4],x[5]))
+  arvore.pack(side = RIGHT) 
   
  
   # arvore.pack()
@@ -76,13 +75,13 @@ cor2 = "#6959CD"
 principal = Tk()
 principal.title("Calendário")
 principal.config(background = cor1)
-principal.geometry("500x300")
+principal.geometry("600x300")
 
 selecionar = IntVar()
 
-topo = Frame(principal, width=500, height=50,bd=1, relief="raise",background = cor1)
+topo = Frame(principal, width=600, height=50,bd=1, relief="raise",background = cor1)
 topo.pack(side=TOP)
-direita = Frame(principal,width =250,height = 250,bd=3,relief="raise",background=cor2)
+direita = Frame(principal,width =300,height = 250,bd=3,relief="raise",background=cor2)
 direita.pack(side=RIGHT)
 esquerda = Frame(principal,width = 50,heigh = 50,relief = "raise", bd=5)
 esquerda.place(x=15,y=90)
