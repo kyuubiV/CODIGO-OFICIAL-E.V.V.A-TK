@@ -20,24 +20,14 @@ dia integer(2) not null,
 mes integer(2) not null,
 ano integer(4) not null,
 horario time,
-foreign key(id_user)
-references usuario (id_user)
-);"""
-
-
-
-tabelaAtividade = """create table if not exists atividade
-(id_ativ integer not null primary key autoincrement,
-id_calen integer,
 nome_atividade varchar(30) not null,
 tipo_atividade varchar(20) not null,
 local_atividade varchar(30),
 comentario text,
-foreign key(id_calen)
-references calendario(id_calen)
-);
-"""
-
+foreign key(id_user)
+references usuario (id_user)
+);"""
+newTable(variconexao,tabelaCalendario)
 
   
 

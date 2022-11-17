@@ -4,11 +4,9 @@ import tkinter.ttk as ttk
 import tkinter.messagebox as tkMessageBox
 from ConexaoBD import *
 import calendar
-import datetime
-res = select(variconexao,"SELECT * FROM `atividade`")
-print(res)
+from datetime import *
 
-
+# Criação tela principal
 cor1 = "#B0C4DE"
 cor2 = "#6959CD"
 principal = Tk()
@@ -28,25 +26,26 @@ coment = StringVar()
 
 # Agendar data e Atividade no Calendário.
 def Agendar():
+  
   # Não permetir campos vazios.
-  if  dia.get() == "" or mes.get() == ""  or ano.get() == "" or hora.get() == "" or ativ.get() == "" or tipoativ.get() == "" or local.get() == "":   tkinter.messagebox.showinfo(title="Erro",message="Preencha todos os campos!")
-  # Tratamento de execeção para o mês de fevereiro
-  if  dia.get() == "29" and mes.get() == "2":  tkinter.messagebox.showinfo(title="Erro",message="Data não encontrada!") 
-    # Se tudo correto faz o registro no banco de dados.
+  if  dia.get() == "" or mes.get() == ""  or ano.get() == "" or hora.get() == "" or ativ.get() == "" or tipoativ.get() == "" or local.get() == "":   tkinter.messagebox.showinfo(title="Erro",message="Preencha todos os campos!") 
+    
+  # Não perfitir datas inconsistentes 
+  d = int(dia.get())
+  m = int(mes.get())
+  a = int(ano.get())
+  data_atual = date.today()
+  if d < data_atual.day or m < data_atual.month or a < data_atual.year:
+    tkinter.messagebox.showinfo(title="Erro",message="Data selecionada está no passado!")
+    
   else:
     # Adicionar dados na tabela caléndario.
-    dadosdata = "INSERT INTO `calendario` (dia,mes,ano,horario) VALUES('"+dia.get()+"','"+mes.get()+"','"+ano.get()+"','"+hora.get()+"')"
+    dadosdata = "INSERT INTO `calendario` (dia,mes,ano,horario,nome_atividade,tipo_atividade,local_atividade,comentario) VALUES('"+dia.get()+"','"+mes.get()+"','"+ano.get()+"','"+hora.get()+"','"+ativ.get()+"','"+tipoativ.get()+"','"+local.get()+"','"+coment.get()+"')"
     insert(variconexao,dadosdata)
     mes.delete(0,"end") 
     dia.delete(0,"end") 
     ano.delete(0,"end") 
     hora.delete(0,"end")
-    max = str(select(variconexao,"SELECT MAX(id_calen) FROM `calendario`"))
-    
-    print(max)
-    
-    dadosativ = "INSERT INTO `atividade` (id_calen,nome_atividade,tipo_atividade,local_atividade,comentario) VALUES('"+max+"','"+ativ.get()+"','"+tipoativ.get()+"','"+local.get()+"','"+coment.get()+"')"
-    insert(variconexao,dadosativ)
     ativ.delete(0,"end")
     tipoativ.delete(0,"end")
     local.delete(0,"end")
@@ -56,8 +55,7 @@ def Agendar():
 
     # Verificar dados adicionados pelo terminal(Apens para testar funcionamento)
     res = select(variconexao,"SELECT * FROM calendario;")
-    res1 = select(variconexao,"SELECT * FROM atividade;")
-    print(res,res1)
+    print(res)
     
 # Frame
 topo = Frame(principal, width=300, height=50, bd=1, relief="raise")
@@ -170,3 +168,6 @@ principal.mainloop()
 #       arvore.delete(item) #apaga item selecionado da árvore
 #   conexao.commit()
 #   conexao.close()
+
+# dadosativ = "INSERT INTO `atividade` (nome_atividade,tipo_atividade,local_atividade,comentario) VALUES('"+ativ.get()+"','"+tipoativ.get()+"','"+local.get()+"','"+coment.get()+"')"
+#     insert(variconexao,dadosativ)
