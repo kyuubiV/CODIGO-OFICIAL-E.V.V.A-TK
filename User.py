@@ -6,19 +6,8 @@ class User(Pessoa):
     def __init__(self,email,senha,telefone):
         super().__init__(email,senha,telefone)
 
-# metodo que autoriza o usuario a entrar no planner
-          
-    def AlterarSenha(self,valor,telefone):
-      banco=select(variconexao,"SELECT * FROM usuario WHERE id_user ='"+self._return+"';")
-      for Dados in banco:
-       if telefone == Dados[3]:
-        try:
-          update(variconexao,"UPDATE usuario SET email ='"+valor+"' WHERE id_user ='"+self._return+"';")
-          return True
-        except sqlite3.Error as e:
-          print(e)
-       else:
-         return False
+
+    
 # metodo para alterar a senha
     def ExibirDados(self):
         banco=select(variconexao,"SELECT * FROM usuario WHERE id_user ='"+self._return+"';")

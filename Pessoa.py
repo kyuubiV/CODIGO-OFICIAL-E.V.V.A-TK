@@ -6,8 +6,6 @@ class Pessoa:
         self._email = email
         self._senha = senha
         self._telefone =telefone
-        self._dict = {}
-        self._return = None
         self._nm_user = user
         self._dataniver = user
 # metodo para adicionar dados ao dicionario        
@@ -18,16 +16,24 @@ class Pessoa:
       except sqlite3.Error as e:
        print(e)
     
-    def Login(self,email,senha):
+    def Login(self):
         try:
-         banco=select(variconexao,"SELECT * FROM usuario ORDER BY email ASC ")
-         for Dados in banco:
-           if email == Dados[1] and senha == Dados[2]:
-             return True
-             self._return = dados[0]
-           elif email == Dados[1] and senha!= Dados[2]:
-             return 'tl'
-           else:
-             return False
-        except a:
-         print('algo deu errado',a)
+         banco=select(variconexao,"SELECT * FROM usuario WHERE email ='"+self._email+"' AND senha ='"+self._senha+"'")
+         if len(banco) == 1:
+           return True
+         else:
+           return False
+        except sqlite3.Error as e:
+         print('algo deu errado',e)
+        
+    def AlterarSenha(self):
+       banco=select(variconexao,"SELECT * FROM usuario WHERE email ='"+self._email+"' AND telefone ='"+self._telefone+"'")
+       if len(banco) == 1:
+        try:
+          x=banco[0]
+          banco2=update(variconexao,"UPDATE usuario SET senha ='"+self._senha+"' WHERE id_user ='"+str(x[0])+"';")
+          return True
+        except sqlite3.Error as e:
+          print(e)
+       else:
+         return False

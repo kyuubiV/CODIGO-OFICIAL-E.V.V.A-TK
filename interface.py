@@ -98,7 +98,7 @@ txt_senha.grid(row=1, stick="e")
 txt_telefone = Label(Forms, text="Telefone:", font=('arial', 10), bd=20, background=cor2)
 txt_telefone.grid(row=2, stick="e")
 
-txt_result = Label(Buttons, background=cor1)
+txt_result = Label(Buttons, background=cor2)
 txt_result.pack(side=TOP)
 #entradas
 email = Entry(Forms, textvariable=email, width=25)
