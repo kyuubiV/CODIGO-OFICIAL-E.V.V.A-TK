@@ -31,7 +31,7 @@ class Pessoa:
        if len(banco) == 1:
         try:
           x=banco[0]
-          banco2=update(variconexao,"UPDATE usuario SET senha ='"+self._senha+"' WHERE id_user ='"+x[0])+"';")
+          banco2=update(variconexao,"UPDATE usuario SET senha ='"+self._senha+"' WHERE id_user ='"+x[0]+"';")
           return True
         except sqlite3.Error as e:
           print(e)

@@ -1,4 +1,5 @@
-from login im
+from Login import *
+from Menu_Principal import *
 import tkinter.messagebox
 from tkinter import*
 import sqlite3
@@ -28,9 +29,9 @@ def cadastro():
         principal.destroy() 
         exit()
 
-  def entrar():
+  def entrar(usuario):
     principal.withdraw()
-    Login()
+    mn_principal(usuario)
     
   def Pronto():
    if  email.get() == "" or senha.get() == ""  or telefone.get() == "":
@@ -83,11 +84,12 @@ def cadastro():
         showinfo('AVISO', 'tudo certo')
         usuario = Pessoa(email.get(),senha.get(), telefone.get())
         usuario.AddDados()
+        banco=select(variconexao,"SELECT * FROM usuario WHERE email ='"+email.get()+"' AND senha ='"+senha.get()+"'")
+        
+        entrar(banco)
         email.delete(0,"end") 
         senha.delete(0,"end")
         telefone.delete(0,"end")
-        entrar()
-
 #windows
   topo = Frame(principal, width=300, height=50, bd=1, relief="raise")
   topo.pack(side=TOP)
@@ -117,11 +119,9 @@ def cadastro():
   telefone = Entry(Forms, textvariable=telefone, width=25)
   telefone.grid(row=2, column=1)
 #botoes
-  btn_pronto = Button(Buttons, width=12, text="pronto", command=Pronto)
+  btn_pronto = Button(Buttons, width=20, text="pronto", command=Pronto)
   btn_pronto.pack(side=LEFT)
-  btn_jtncad = Button(Buttons, width=13, text=" já tenho cadastro", command=entrar)
-  btn_jtncad.pack(side=LEFT)
-  btn_sair = Button(Buttons, width=12, text="Sair", command=sair)
+  btn_sair = Button(Buttons, width=20, text="Sair", command=sair)
   btn_sair.pack(side=LEFT)
 
   principal.mainloop()

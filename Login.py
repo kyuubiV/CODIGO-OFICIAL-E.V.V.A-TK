@@ -43,9 +43,12 @@ def Login():
 
   def entrar():
     principal.withdraw()
-
+    cadastro()
+  
+  def minu(usuario):  
     principal.withdraw()
-     
+    mn_principal(usuario)
+    
   def Pronto():
    if  email.get() == "" or senha.get() == "":
     tkinter.messagebox.showinfo(title="Erro",message="Preencha todos os campos!",icon ="warning")
@@ -53,7 +56,7 @@ def Login():
    ret=user.Login()
    if len(ret) == 1:
     tkinter.messagebox.showinfo(title="aviso",message=f'Tudo certo')
-    principal(ret)
+    minu(ret)
     email.delete(0,"end") 
     senha.delete(0,"end")
    else:

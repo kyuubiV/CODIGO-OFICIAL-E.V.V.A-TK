@@ -52,7 +52,7 @@ def mn_principal(usuario):
   # figura1.grid(row=2,column=8)
 
   txtus= Label(Formsoutrolado,width=16, font=('arial', 10), text = 'Usuário', bd=10,background = corr)
-  #txtus.grid(row=1, column=1)
+  txtus.grid(row=1, column=1)
 
   #atv = Label(Forms, text="A\nT\nI\nV\nI\nD\nA\nD\nE\n ", font=#('arial', 6), bd=10, background=corum )
 
