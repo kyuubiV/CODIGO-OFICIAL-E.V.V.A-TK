@@ -25,5 +25,6 @@ foreign key(id_user)
 references usuario (id_user)
 );"""
 
+
 # newTable(variconexao,tabelaCalendario)
 
