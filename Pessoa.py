@@ -1,27 +1,40 @@
+from ConexaoBD import *
+from Banco import *
+user='a definir'
 class Pessoa:
-    def __init__(self):
-        self.CPF = input("Digite seu CPF: ")
-        self._email = input("Digite seu email: ")
-        self._senha = input("Digite sua senha: ")
-        self._telefone = input('Digite seu telefone: ')
-        self._dict = {}   
-        self._nm_user = None
-        self._dataniver = None
-# atributos usuario
-    def ConfirmaDado(self):
-        x= input("Confirme o seu CPF: ")
-        y= input("Confirme a sua senha: ")
-        if self.CPF == x and self._senha == y:
-            print("\033[0;49;32mTudo certo!")
-            return 's'
-        else:
-            print("\033[0;49;31merro os dados digitados não coincidem")
-            print('\033[1;94m')
-            return 'n'
-# metodo para confirmar dados        
+    def __init__(self,email,senha,telefone):
+        self._email = email
+        self._senha = senha
+        self._telefone =telefone
+        self._nm_user = user
+        self._dataniver = user
+# metodo para adicionar dados ao dicionario        
     def AddDados(self):
-        x = [self._email, self._senha, self._telefone, self._nm_user, self._dataniver]
-        if self._dict.get(self.CPF):
-            print("\033[0;49;31mJá existe esse usuario", self.CPF)
-        else:
-            self._dict[self.CPF] = x
+      try:
+       dadosusu = "INSERT INTO usuario (email,senha,nome_user,telefone,data_aniver) VALUES ('"+self._email+"','"+self._senha+"','"+self._nm_user+"','"+self._telefone+"','"+self._dataniver+"');" 
+       insert(variconexao,dadosusu)
+      except sqlite3.Error as e:
+       print(e)
+    
+    def Login(self):
+        try:
+         banco=select(variconexao,"SELECT * FROM usuario WHERE email ='"+self._email+"' AND senha ='"+self._senha+"'")
+         if len(banco) == 1:
+           return banco
+         else:
+           return banco
+        except sqlite3.Error as e:
+         print('algo deu errado',e)
+        
+    def AlterarSenha(self):
+       banco=select(variconexao,"SELECT * FROM usuario WHERE email ='"+self._email+"' AND telefone ='"+self._telefone+"'")
+       if len(banco) == 1:
+        try:
+          x=banco[0]
+          banco2=update(variconexao,"UPDATE usuario SET senha ='"+self._senha+"' WHERE id_user ='"+x[0]+"';")
+          return True
+        except sqlite3.Error as e:
+          print(e)
+       else:
+         return False
+

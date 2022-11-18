@@ -8,7 +8,8 @@ nome_user varchar(30),
 telefone varchar(12),
 data_aniver date
 );"""
-delete(variconexao,"DELETE FROM usuario WHERE id_user>1")
+#delete(variconexao,"DELETE FROM usuario WHERE id_user>1")
+
 
   
 tabelaCalendario = """CREATE TABLE IF NOT EXISTS calendario
@@ -22,7 +23,7 @@ foreign key(id_user)
 references usuario (id_user)
 );"""
 
-newTable(variconexao,tabelaCalendario)
+
 
 tabelaAtividade = """create table if not exists atividade
 (id_ativ integer not null primary key autoincrement,

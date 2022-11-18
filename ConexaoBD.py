@@ -1,6 +1,6 @@
 import sqlite3
 
-bancodados = "bando.bd"
+bancodados = "banco.bd"
 
 def iniciar_conexao():
   conexao = None
