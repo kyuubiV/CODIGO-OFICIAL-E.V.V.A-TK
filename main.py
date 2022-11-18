@@ -1,4 +1,4 @@
-from InterAgenda import *
+from InterCalen import *
 # from ConexaoBD import *
 # from Calendario import *
 # from  User import *

@@ -1,13 +1,14 @@
 import tkinter.messagebox
 from tkinter import*
 import tkinter.ttk as ttk
+from tkinter.simpledialog import askstring
 import tkinter.messagebox as tkMessageBox
 from ConexaoBD import *
 import calendar 
 from datetime import *
 
 
-    
+
 # Mostrar datas com compromissos
 def calen():
   
@@ -57,13 +58,10 @@ txt_selecionar.grid(row=0, sticky="e")
 sele = Entry(topo, textvariable = selecionar, width=5,bd = 3)
 sele.grid(row=0, column=1,sticky = "w")
 
-
 # Botões
 # Botão Visualizar 
 btn_visu = Button(topo, width=5, text="OK", command=calen)
 btn_visu.grid(row=1,column=0,stick = "e")
-
-
 
 
 # Mostra calendário atual
@@ -103,20 +101,4 @@ arvore.column('#8', stretch=NO, minwidth=0, width=80)
 
 arvore.pack(side=TOP)
 
-
 principal.mainloop()
-
-
-
-
-
-# def detalhar():
-#   for item in arvore.selection():
-#    ativ=select(variconexao,"SELECT * FROM atividade")
-#    for item in ativ:
-#      print(*item[1])
-#      atividade = select(variconexao,"SELECT * FROM atividade WHERE id_calen = '"+item[1]+"'")
-#      Ativid
-      
-#    tkinter.messagebox.showinfo(title="Detalhes",message=atividade) 
-#   print(ativ)

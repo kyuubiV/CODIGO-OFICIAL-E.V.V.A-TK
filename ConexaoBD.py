@@ -11,6 +11,7 @@ def iniciar_conexao():
     print("Erro de conexão.",e)
   return conexao
 variconexao = iniciar_conexao()
+
 #Criar Tabela
 def newTable(conexao,sql):
   try:

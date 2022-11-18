@@ -54,8 +54,8 @@ def Agendar():
   
 
     # Verificar dados adicionados pelo terminal(Apens para testar funcionamento)
-    res = select(variconexao,"SELECT * FROM calendario;")
-    print(res)
+    # res = select(variconexao,"SELECT * FROM calendario;")
+    # print(res)
     
 # Frame
 topo = Frame(principal, width=300, height=50, bd=1, relief="raise")
@@ -111,63 +111,9 @@ coment.grid(row=1)
 
 # Botões
 btn_cadastrar = Button(Buttons, width=10, text="Cadastrar", command=Agendar)
-btn_cadastrar.pack(side=LEFT)
+btn_cadastrar.pack(side=RIGHT)
+
+btn_voltar = Button(Buttons, width=10, text="Voltar")
+btn_voltar.pack(side=LEFT)
 
 principal.mainloop()
-
-# btn_consultar = Button(Buttons, width=10, text="Consultar", command=consultar)
-# btn_consultar.pack(side=LEFT)
-# btn_sair = Button(Buttons, width=10, text="Excluir", command=deletar)
-# btn_sair.pack(side=LEFT)
-# btn_sair = Button(Buttons, width=10, text="Sair", command=sair)
-# btn_sair.pack(side=LEFT)
-
-# treeview
-# scrollbary = Scrollbar(direita, orient=VERTICAL)
-# scrollbarx = Scrollbar(direita, orient=HORIZONTAL)
-# arvore = ttk.Treeview(direita, columns=("Id","Nome", "Sobrenome", "Email"), selectmode="extended", height=200, yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
-# scrollbary.config(command=arvore.yview)
-# scrollbary.pack(side=RIGHT, fill=Y)
-# scrollbarx.config(command=arvore.xview)
-# scrollbarx.pack(side=BOTTOM, fill=X)
-# arvore.heading('Id', text="ID", anchor=W)
-# arvore.heading('Nome', text="Nome", anchor=W)
-# arvore.heading('Sobrenome', text="Sobrenome", anchor=W)
-# arvore.heading('Email', text="E-mail", anchor=W)
-# arvore.column('#0', stretch=NO, minwidth=0, width=0)
-# arvore.column('#1', stretch=NO, minwidth=0, width=80)
-# arvore.column('#2', stretch=NO, minwidth=0, width=80)
-# arvore.column('#3', stretch=NO, minwidth=0, width=80)
-# arvore.pack()
-
-
-
-# def consultar():
-#   arvore.delete(*arvore.get_children()) #limpar tree view
-#   banco() # chamar conexão com o banco
-#   cursor.execute("SELECT * FROM `aluno` ORDER BY `nome` ASC") # seleção com ordenamento por nome
-#   fetch = cursor.fetchall() # retorna os resultados como tuplas e armazena em fetch
-#   for dados in fetch: # insere tuplas do fetch na árvore
-#     arvore.insert('', 'end', values=(dados[0],dados[1], dados[2], dados[3]))
-#   cursor.close() # encerrar cursor
-#   conexao.close() # encerrar conexão
-    
-# def sair():
-#     resultado = tkMessageBox.askquestion('Cadastro Alunos', 'Tem certeza que deseja sair?', icon="warning") #pergunta se deseja realmente sair
-#     if resultado == 'yes':
-#         principal.destroy() # fecha tela
-#         exit()
-
-# def deletar():
-#   banco()
-#   item = arvore.selection()[0] # recebe item selecionado na árvore
-#   resultado = tkinter.messagebox.askquestion("Confirmação", "Tem certeza que deseja excluir aluno?", icon="warning") # pede confirmação do usuário
-#   if resultado == 'yes':
-#     for item in arvore.selection():
-#       cursor.execute("DELETE FROM aluno WHERE id = ?", (arvore.set(item, '#1'),)) #apaga item selecionado do banco
-#       arvore.delete(item) #apaga item selecionado da árvore
-#   conexao.commit()
-#   conexao.close()
-
-# dadosativ = "INSERT INTO `atividade` (nome_atividade,tipo_atividade,local_atividade,comentario) VALUES('"+ativ.get()+"','"+tipoativ.get()+"','"+local.get()+"','"+coment.get()+"')"
-#     insert(variconexao,dadosativ)
