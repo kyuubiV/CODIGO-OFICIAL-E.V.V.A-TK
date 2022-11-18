@@ -6,12 +6,13 @@ import tkinter.messagebox as tkMessageBox
 from ConexaoBD import *
 import calendar 
 from datetime import *
+from User import *
+from Menu_Principal import *
 
-
-def Calendario():
+def Calendario(usuario):
   # Mostrar datas com compromissos
   def calen():
-    
+    print(usuario)
     # Destruir antigo calendário do mês atual
     for widget in esquerda.winfo_children():
       widget.destroy()
@@ -25,11 +26,15 @@ def Calendario():
   
     arvore.delete(*arvore.get_children())
     # Mostrar data na treeview
-    data = select(variconexao,"SELECT * FROM `calendario` WHERE `mes` = '"+sele.get()+"'ORDER BY `dia` ASC")
+    data = select(variconexao,"SELECT * FROM `calendario` WHERE `mes` = '"+sele.get()+"' AND `id_user` = '"+str(usuario)+"' ORDER BY `dia` ASC")
     for dados in data: 
        arvore.insert('', '4', values=(dados[6],dados[7], dados[8], dados[2], dados[3], dados[4], dados[5], dados[9]))  
     arvore.pack(side = RIGHT)
-    
+  
+    # user= User("","","")
+    # res = user.ExibirDados(x[0])
+    # for dados in res:
+    #  print(f'email: {dados[1]}\nSenha: {dados[2]} \nNome de usuario: {dados[3]}\nTelefone:  {dados[4]}\nData de aniversario: {dados[5]}')
     
   # Criação tela principal
   cor1 = "#B0C4DE"
@@ -62,8 +67,7 @@ def Calendario():
   # Botão Visualizar 
   btn_visu = Button(topo, width=5, text="OK", command=calen)
   btn_visu.grid(row=1,column=0,stick = "e")
-  
-  
+
   
   # Mostra calendário atual
   data_atual = date.today()

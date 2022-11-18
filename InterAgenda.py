@@ -6,8 +6,10 @@ from ConexaoBD import *
 import calendar
 from datetime import *
 from User import *
+from Menu_Principal import *
 
-def Agenda():
+def Agenda(usuario):
+  print(usuario)
   # Criação tela principal
   cor1 = "#B0C4DE"
   cor2 = "#6959CD"
@@ -28,7 +30,6 @@ def Agenda():
   
   # Agendar data e Atividade no Calendário.
   def Agendar():
-    
     # Não permetir campos vazios.
     if  dia.get() == "" or mes.get() == ""  or ano.get() == "" or hora.get() == "" or ativ.get() == "" or tipoativ.get() == "" or local.get() == "":   tkinter.messagebox.showinfo(title="Erro",message="Preencha todos os campos!") 
       
@@ -37,12 +38,14 @@ def Agenda():
     m = int(mes.get())
     a = int(ano.get())
     data_atual = date.today()
-    if d < data_atual.day or m < data_atual.month or a < data_atual.year:
-      tkinter.messagebox.showinfo(title="Erro",message="Data selecionada está no passado!")
-      
+    if d < data_atual.day or m < data_atual.month and a == data_atual.year :
+        tkinter.messagebox.showinfo(title="Erro",message="Data selecionada está no passado!")
+    if a < data_atual.year:
+      tkinter.messagebox.showinfo(title="Erro",message="Data selecionada está no passado!")  
+    
     else:
       # Adicionar dados na tabela caléndario.
-      dadosdata = "INSERT INTO `calendario` (dia,mes,ano,horario,nome_atividade,tipo_atividade,local_atividade,comentario) VALUES('"+dia.get()+"','"+mes.get()+"','"+ano.get()+"','"+hora.get()+"','"+ativ.get()+"','"+tipoativ.get()+"','"+local.get()+"','"+coment.get()+"')"
+      dadosdata = "INSERT INTO `calendario` (id_user,dia,mes,ano,horario,nome_atividade,tipo_atividade,local_atividade,comentario) VALUES('"+str(usuario)+"','"+dia.get()+"','"+mes.get()+"','"+ano.get()+"','"+hora.get()+"','"+ativ.get()+"','"+tipoativ.get()+"','"+local.get()+"','"+coment.get()+"')"
       insert(variconexao,dadosdata)
       mes.delete(0,"end") 
       dia.delete(0,"end") 
@@ -113,11 +116,6 @@ def Agenda():
   # Botões
   btn_cadastrar = Button(Buttons, width=10, text="Cadastrar", command=Agendar)
   btn_cadastrar.pack(side=RIGHT)
-  def mp():
-    principal.withdraw()
-    
-  # Botão Voltar
-  btn_voltar = Button(Buttons, width=10, text="Voltar")
-  btn_voltar.pack(side=LEFT)
+  
   
   principal.mainloop()

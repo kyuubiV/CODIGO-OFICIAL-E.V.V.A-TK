@@ -10,12 +10,8 @@ from InterAgenda import *
 from InterCalen import *
 
 def mn_principal(usuario):
-  def agenda():
-    windowsmp.withdraw()
-    Agenda()
-  def calendario():
-   windowsmp.withdraw()
-   Calendario()
+  
+    
   windowsmp = Tk()
   windowsmp.geometry("600x350")
 
@@ -66,12 +62,25 @@ def mn_principal(usuario):
   # Buttons.pack(side=TOP)
 
 #commands
+  def agenda():
+    x=usuario[0]
+    windowsmp.withdraw()
+    Agenda(x[0])
+  def calendario():
+    x=usuario[0]
+    windowsmp.withdraw()
+    Calendario(x[0])
+  def buscaatv():
+    patv = askstring('Buscar Atividade', 'Digite o nome da atividade.')
+    atv = select(variconexao,"SELECT dia,mes,ano,horario,tipo_atividade,local_atividade,comentario FROM calendario WHERE nome_atividade = '"+patv+"'")
+    for x in atv:
+     tkinter.messagebox.showinfo(title ='Info',message = f'Dia: {x[0]}\nMês: {x[1]} \nAno: {x[2]}\nHora:  {x[3]}\nTipo: {x[4]}\nLocal:{x[5]}\nComentário:{x[6]}')
   def visu_dads():
    x=usuario[0]
    user= User("","","")
    res = user.ExibirDados(x[0])
    for dados in res:
-    tkinter.messagebox.showinfo(title ='Dados',message = f'email: {dados[1]}\nSenha: {dados[2]} \nNome de usuario: {dados[3]}\nTelefone:  {dados[4]}\nData de aniversario: {dados[5]}') 
+    tkinter.messagebox.showinfo(title ='Dados',message = f'email: {dados[1]}\nSenha: {dados[2]} \nNome de usuario: {dados[3]}\nTelefone:  {dados[4]}\nData de aniversario: {dados[5]}')
   def sair():
     
     resultado = tkMessageBox.askquestion('Cadastro Usuários', 'Tem certeza que deseja sair?', icon="warning") 
@@ -107,7 +116,7 @@ def mn_principal(usuario):
   buttons_aa = Button(Forms,width = 12, text="Agendar Atividade", font=('arial', 8), bd=10, background=corb, command = agenda)
   buttons_aa.grid(column=1,row=1)
 
-  button_ba =Button(Forms, width=12, text="Buscar atividade", font=('arial', 8), bd=10, background=corb)
+  button_ba =Button(Forms, width=12, text="Buscar atividade", font=('arial', 8), bd=10, background=corb,command=buscaatv)
   button_ba.grid(column=1,row=2)
 
   button_va = Button(Forms,width=12,text="Visualizar Atividade", font=('arial', 8), bd=10, background=corb,command=calendario)
