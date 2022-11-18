@@ -20,9 +20,9 @@ class Pessoa:
         try:
          banco=select(variconexao,"SELECT * FROM usuario WHERE email ='"+self._email+"' AND senha ='"+self._senha+"'")
          if len(banco) == 1:
-           return True
+           return banco
          else:
-           return False
+           return banco
         except sqlite3.Error as e:
          print('algo deu errado',e)
         
@@ -31,9 +31,10 @@ class Pessoa:
        if len(banco) == 1:
         try:
           x=banco[0]
-          banco2=update(variconexao,"UPDATE usuario SET senha ='"+self._senha+"' WHERE id_user ='"+str(x[0])+"';")
+          banco2=update(variconexao,"UPDATE usuario SET senha ='"+self._senha+"' WHERE id_user ='"+x[0])+"';")
           return True
         except sqlite3.Error as e:
           print(e)
        else:
          return False
+

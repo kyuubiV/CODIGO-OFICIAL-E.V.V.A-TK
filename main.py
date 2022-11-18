@@ -1,3 +1,5 @@
-#from interface import *
-#from Login import *
-from Menu_Principal import *
+# from interface import *
+from Login import *
+#from Menu_Principal import *
+#cadastro()
+Login()
