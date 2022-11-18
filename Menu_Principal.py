@@ -6,12 +6,16 @@ import tkinter.messagebox as tkMessageBox
 import calendar
 from User import *
 from tkinter.simpledialog import askstring
+from InterAgenda import *
+from InterCalen import *
 
 def mn_principal(usuario):
-  def vcalendario():
-   y = int(input("Digite o ano desejado:"))
-   m = int(input("Digite a data desejada "))
-   print(calendar.month(y, m))
+  def agenda():
+    windowsmp.withdraw()
+    Agenda()
+  def calendario():
+   windowsmp.withdraw()
+   Calendario()
   windowsmp = Tk()
   windowsmp.geometry("600x350")
 
@@ -100,13 +104,13 @@ def mn_principal(usuario):
   atv= Label(Forms,width=15, font=('arial', 12), text = 'ATIVIDADES:', bd=10,background = coroxo)
   atv.grid(row=0, column=1)
 
-  buttons_aa = Button(Forms,width = 12, text="Agendar Atividade", font=('arial', 8), bd=10, background=corb, command = Calendario)
+  buttons_aa = Button(Forms,width = 12, text="Agendar Atividade", font=('arial', 8), bd=10, background=corb, command = agenda)
   buttons_aa.grid(column=1,row=1)
 
   button_ba =Button(Forms, width=12, text="Buscar atividade", font=('arial', 8), bd=10, background=corb)
   button_ba.grid(column=1,row=2)
 
-  button_va = Button(Forms,width=12,text="Visualizar Atividade", font=('arial', 8), bd=10, background=corb)
+  button_va = Button(Forms,width=12,text="Visualizar Atividade", font=('arial', 8), bd=10, background=corb,command=calendario)
   button_va.grid(column=1,row=3)
 
   buttons = Button(Forms, width=12, text= 'SAIR', font= ('arial', 8),bd=10, background= corb,command= sair)
